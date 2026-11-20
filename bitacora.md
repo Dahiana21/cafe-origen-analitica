@@ -49,6 +49,50 @@ ID de venta	  Cálculo del valor	      Total vendido     acumulado	  Unidades ac
 12	          3 × 26.000 =            78.000	        985.000	      21
 
 
+totalVendidoM (ventas):
+- Recorro todas las ventas con reduce
+- No filtro ninguna venta
+- Transformo cada venta en su valor usando la funcion valorVenta
+- Acumulo el dinero total
+- No agrupo ningun dato 
+
+unidadesVendidasM (ventas):
+- Recorro todas las ventas con reduce
+- No filtro ninguna venta
+- Tomo la cantidad de unidades que tiene cada venta
+- Acumulo la cantidad de unidades vendidas
+- No agrupo ningun dato
+
+ventasPorCiudadM (ventas, ciudad)
+- Recorro las ventas para seleccionar y guardarles en la variable ciudad buscada
+- Filtro las ventas cuya ciudad coinciden despues de la normalizacion
+- Transformo los nombres de las ciudad haciendo que queden en minusculas y sin espacios
+- Acumulo el valor vendido en esa ciudad
+- Agrupo en el resultado las ventas que coinciden con el nombre de la ciudad solicitada
+
+totalPorCiudad (ventas)
+- Recorro todas las ventas 
+- No filtro ninguna venta
+- Normalizo el nombre de cada ciudad
+- Acumulo el precio vendido por cada ciudad
+- Agrupo los totales usando la ciudad como la clave del objeto
+
+unidadesPorProducto (ventas)
+- Recorro todas las ventas
+- No filtro ninguna venta
+- Normalizo el nombre de cada producto
+- Acumulo las unidades vendidas por producto
+- Agrupo las cantidades usando el producto como la clave del objeto
+
+topProductosPorValor (ventas, K)
+- Recorro todas las ventas
+- No filtro ventas , al final solo se seleccionan K productos
+- Normalizo el nombre de los productos  y hago una lista vacia para agregar cada producto y su total
+- Acumulo el total generado por cada producto
+- Agrupo por producto, se ordenan los resultados de mayor a menos usando sort (se ordena es la lista que creamos vacia)
+
+
+Se ejecuto verificar.js y todos los resultador fueron verificados que su respuesta fuera OK.
 
 
 

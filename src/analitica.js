@@ -112,4 +112,107 @@ const ventasVacias = [];
 console.log("Total vendido con arreglo vacio :", totalVendido(ventasVacias));
 
 
+function totalVendidoM (ventas){
 
+    return ventas.reduce((total, venta) => { //reduce recorre el arreglo uno a la vez
+        return total + valorVenta(venta);
+    }, 0);
+}
+
+console.log("Total vendido con metodo: ", totalVendidoM(ventas));
+
+function unidadesVendidasM (ventas){
+
+    return ventas.reduce((total,venta) => {
+        return total + venta.cantidad;
+    }, 0);
+}
+
+console.log("Unidades vendidas con metodo: ", unidadesVendidasM(ventas));
+
+function ventasPorCiudadM (ventas, ciudad){
+
+    const ciudadBuscada = convertirAMinuscula(quitarEspacios(ciudad));
+
+    const nuevoArreglo = ventas.filter((venta) => {
+        const ciudadVenta = convertirAMinuscula(quitarEspacios(venta.ciudad));
+
+        return ciudadVenta === ciudadBuscada;
+    });
+
+    return nuevoArreglo.reduce((total,venta) => {
+        return total + valorVenta(venta);
+    }, 0);
+}
+
+console.log("Ventas ciudad medellin con metodo: " , ventasPorCiudadM(ventas, " Medellín "));
+
+function totalPorCiudad (ventas){
+
+    const totales = {};
+
+    for (const venta of ventas){
+        const ciudad = convertirAMinuscula(quitarEspacios(venta.ciudad));
+
+        totales[ciudad] = (totales[ciudad] || 0) + valorVenta(venta);
+    }
+
+    return totales;
+
+}
+
+console.log("El total por cada ciudad es: ",totalPorCiudad(ventas));
+
+function unidadesPorProducto (ventas){
+    const totales = {};
+
+    for (const venta of ventas){
+        const producto = convertirAMinuscula(quitarEspacios(venta.producto));
+
+        totales [producto] = (totales[producto] || 0) + venta.cantidad;
+    }
+
+    return totales;
+}
+
+console.log("El total por cada producto es: ", unidadesPorProducto(ventas));
+
+function topProductosPorValor (ventas, k){ //La k representa la cantidad de productos que quiero ver
+
+    const totales ={}; //Objeto vacio donde se guardara cada producto como propiedad
+
+    for (const venta of ventas){
+        const producto = venta.producto.trim().toLowerCase(); //se normaliza el nombre del producto 
+
+        if (totales[producto] === undefined){ //Inicia en cero si es la primera vez que encuentra el producto 
+            totales[producto] = 0;
+        }
+
+        totales[producto] += valorVenta(venta);
+    }
+
+    const listaVacia = []; //crea una lista vacia
+
+    for (const producto in totales){ // recorre cada producto guardado en totales
+        listaVacia.push({
+            producto: producto,
+            total: totales[producto]
+        }); //agrega a la lista un objeto con estos dos datos el nombre y el total acumulado
+    }
+
+    listaVacia.sort((a,b) => b.total - a.total);
+
+    return listaVacia.slice(0,k);
+}
+
+console.log ("El top de productos es: ", topProductosPorValor(ventas, 3));
+
+module.exports={
+    valorVenta,
+    totalVendido,
+    unidadesVendidas,
+    ventasPorCiudad,
+    totalVendidoM,
+    unidadesVendidasM,
+    ventasPorCiudadM
+};
