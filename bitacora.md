@@ -30,8 +30,14 @@ PLAN EN PSEUDOCÓDIGO
 
 RESULTADOS DE PRUEBAS
 Arreglo completo: el total de ventas me tomara las 12 ventas que tengo y su resultado sera 985000.
-Arreglo con un solo elemento: en el caso de la rueba solo tomara el total vendido de la posicion cero osea solo de la venta numero 1 por lo tanto el total sera 84000.
+//console.log("Total vendido: ", totalVendido(ventas));
+
+Arreglo con un solo elemento: en el caso de la prueba solo tomara el total vendido de la posicion cero osea solo de la venta numero 1 por lo tanto el total sera 84000.
+//console.log("Id de venta ",(ventas[0].id),"Valor vendido: " , valorVenta(ventas[0]));
+
 Arreglo vacío: el arreglo vacio devuelve un cero ya que el for nunca recorre el arreglo y se queda con su valor incial.
+//const ventasVacias = [];
+//console.log("Total vendido con arreglo vacio :", totalVendido(ventasVacias));
 
 TABLA DE TRAZA
 ID de venta	  Cálculo del valor	      Total vendido     acumulado	  Unidades acumuladas
@@ -94,5 +100,21 @@ topProductosPorValor (ventas, K)
 
 Se ejecuto verificar.js y todos los resultador fueron verificados que su respuesta fuera OK.
 
+Pruebas de los dos errores
+Error 1: Bogota aparecia dos veces
+Sintoma: Bogota aparecia dos veces en el total
+Entrada que lo produce: Dos ventas con las ciudades "Bogota" y "Bogota"
+Hipotesis: Los espacios sobrantes hacian que los nombres se tomaran como ciudades diferentes.
+Prueba realizada: cree dos ventas con esos nombres y ejecute la funcion totalPorCiudad.
+Causa: La version preliminar no habia normalizado los espacios sobrantes.
+Corrección: cree la funciones quitar espacios con .trim y la funcion convertirAMinuscula .toLowerCase antes de agrupar. La prueba mostro una sola clave para Bogota y su respectivo total.
+
+Error 2: El ticket promedio mostraba NaN
+Sintoma: Al buscar un dia sin ventas, el ticket promedio mostraba NaN
+Entrada que lo produce: E   l arreglo vacio que devuelve ventasDelDia para una fecha que no tiene registros.
+Hipotesis: La funcion intentaba dividir entre cero
+Prueba realizada: calcule el ticket promedio de un dia sin ventas, antes me daba NaN pero despues de la correccion devuelve 0.
+Causa: cantidad quedaba en cero y se intentaba dividir el total entre esa cantidad.
+Correccion: agregue if (cantidad === 0) return 0 antes de la division 
 
 
