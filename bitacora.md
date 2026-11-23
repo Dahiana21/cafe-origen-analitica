@@ -130,3 +130,46 @@ CLASIFICACION Big O
 - ventaMayorInstrumentado es O(n) despues de iniciar con la primera venta, debe recorrer las demas para comparar, sus operaciones crecen proporcionalmente al numero de ventas.
 - totalesPorCiudadInstrumentado es O(n) este recorre todas las  ventas y acumula sus valores por ciudad, tambien procesa las ciudades agrupadas, pero la lista de ciudades posibles es fija por eso el recorrido depende de n.
 
+TRAZA DE ARREGLO DE 5 VENTAS
+VENTA      CLIENTE
+1          C01
+2          C02
+3          C01
+4          C03
+5          C02
+
+Entonces el ciclo exterior toma una venta y el interios la compra con la que viene despues
+
+Venta i     Ventas comparadas despues   comparaciones
+1           2,3,4 y 5                   4
+2           3,4 y 5                     3
+3           4 y 5                       2
+4           5                           1
+Total                                   10
+
+con 5 ventas la comparacion se hace 10 veces por lo tanto crece O(n a la 2)
+
+
+Mide el tiempo de ejecución con console.time y console.timeEnd para n = 1.000, 2.000, 4.000, 8.000 y 16.000. 
+clientesRecurrentes con 1000 ventas: 9.093ms
+clientesRecurrentes con 2000 ventas: 14.77ms
+clientesRecurrentes con 4000 ventas: 56.261ms
+clientesRecurrentes con 8000 ventas: 303.511ms
+clientesRecurrentes con 16000 ventas: 1.056s
+
+al duplicar la canridad de ventas, claramente el tiempo de ejecucuion aumenta, los resultados varian y no siempre se cuadruplican por ejemplo de 2000 a 4000 auemnto 3,8 veces y de 8000 a 16000 aumento 3,5 veces, los ciclos anidados comparan pares de ventas y al duplicar n, la cantidad de pares se acerca cuatro veces mas.
+
+Con tus mediciones, estima cuánto tardaría la función con 100.000 y con 1.000.000 de ventas. Ejecuta 100.000 solo si tu estimación es menor a dos minutos.
+
+tiempo estimado =  tiempo medido * (nuevo n / n medido) a la dos
+
+para 100000 seria 1,056 * (100000 / 16000) a la 2 eso aproximandamende da 41,25 segundos.
+
+para 1000000 seria 1,056 * (1000000 / 16000) a la dos eso aproximadamente da 4.125 segundos, es decir como 68 minutos y 45 segundos.
+
+Resultados de la prueba con 100000 = clientesRecurrentes con 100000 ventas: 47.803s
+
+Los ciclos anidados realizan hasta n a la dos comparaciones entre ventas, ademas cuando dos ventas tienen el mismo cliente, se ejecura recurrentes.includes. Esta busqueda puede revisar varios clientes guardados y en el peor de los casos crecer junto con n, por eso con una distribucion de clientes desfavorable el costo de includes puede elevar el peor caso hasta O(n) a la 3.
+
+CONCLUSION
+El reporte se vuelve mas lebto porque debe revisas muchas veces las ventas para encontrar los clientes que compraron mas de una vez y a medida que el historial crezca el programa debe hacer muchas mas revisiones y búsquedas por lo cual va a tardar mas en entregar el resultado.

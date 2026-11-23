@@ -1,4 +1,4 @@
-const { totalVendido, ventaMayor, totalPorCiudad } = require("./analitica");
+const analitica = require("./analitica");
 const generador = require("./generador");
 
 const variables = [100,1000,10000,100000];
@@ -25,4 +25,15 @@ for (const n of variables){
     });
 }
 
+console.log("Operaciones de los indicadores: ")
 console.table(resultados);
+
+const variables2 = [1000,2000,4000,8000,16000,100000];
+for (const n of variables2){
+    const ventasGeneradas = generador.generarVentas(n);
+    const nombre = `clientesRecurrentes con ${n} ventas`;
+    
+    console.time(nombre);
+    analitica.clientesRecurrentes(ventasGeneradas);
+    console.timeEnd(nombre);
+}

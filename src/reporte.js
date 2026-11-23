@@ -55,4 +55,8 @@ console.log(analitica.totalPorCiudad(pruebaCiudadRepetida));
 
 const ventasSinVentas = analitica.ventasDelDia(ventas,"2026-09-07");
 console.log("Promedio del día sin ventas:", analitica.ticketPromedio(ventasSinVentas));
-
+console.log("\n")
+console.log("**********************************");
+console.log(" SECCION 6 - Usuarios Recurrentes ");
+console.log("**********************************");
+console.log ("Los clientes recurrentes son: ", analitica.clientesRecurrentes(ventas));
