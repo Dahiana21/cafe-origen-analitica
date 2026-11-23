@@ -118,3 +118,15 @@ Causa: cantidad quedaba en cero y se intentaba dividir el total entre esa cantid
 Correccion: agregue if (cantidad === 0) return 0 antes de la division 
 
 
+Prediccion: Si la cantodad de ventas osea n se multiplica por 10, las funciones totalVendidoInstrumentado y ventaMayorInstrumentado tambien se multipliquen por 10, porque recorren las ventas. En totalPorCiudadInstrumentado espero un crecimiento cercano a 10 veces ya que ademas de recorrer las ventas, visita una vez cada ciudad agrupada.
+
+Antes de medir la tabla dije que al multiplicar n por 10, las funciones que recorren las ventas realizarian 10 veces mas operaciones. Para primeraVenta, que solo consulta el primer elemento dije que el contador se mantendria igual.
+
+Los resultados coinciden con la prediccion ya que al aumentar diez veces n, las operaciones de las funciones que recorren las ventas tambien au8mentan 10 veces, PrimeraVenta se mantiene en una sola operacion, en totalPorCiudadInstrumentado el valor puede varias porque suma una operacion adicional por cada ciudad que encuentre en este caso son 4.
+
+CLASIFICACION Big O
+- primeraVenta es O(1) ya que no recorre el arreglo, solo revisa si el arreglo esta vacio y si tiene algun elemento solo revisa la primera posicion ventas [0], el trabajo no aumenta con n.
+- totalVendidoInstrumentado es O(n) esta tiene un ciclo que recorre todas las ventas entonces si hay 100 ventas, hace 100 visitas, si hay 1000 hara las mismas 1000.
+- ventaMayorInstrumentado es O(n) despues de iniciar con la primera venta, debe recorrer las demas para comparar, sus operaciones crecen proporcionalmente al numero de ventas.
+- totalesPorCiudadInstrumentado es O(n) este recorre todas las  ventas y acumula sus valores por ciudad, tambien procesa las ciudades agrupadas, pero la lista de ciudades posibles es fija por eso el recorrido depende de n.
+
