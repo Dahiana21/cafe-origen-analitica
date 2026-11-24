@@ -173,3 +173,37 @@ Los ciclos anidados realizan hasta n a la dos comparaciones entre ventas, ademas
 
 CONCLUSION
 El reporte se vuelve mas lebto porque debe revisas muchas veces las ventas para encontrar los clientes que compraron mas de una vez y a medida que el historial crezca el programa debe hacer muchas mas revisiones y búsquedas por lo cual va a tardar mas en entregar el resultado.
+
+2 FUNCIONES PATA TOTALPORCIUDAD usando arreglos y una sola pasada
+Cuenta, para cada versión, cuántos recorridos completos hace y cuántos arreglos nuevos crea. Expresa ambas en notación Big O de tiempo y de espacio.
+
+totalCiudadCadena: tiene 4 pasadas ya que map y filter  recorren las n ventas y el segundo map y reduce recorren las k ventas filtradas.
+- Tiene tres arreglos uno por cada map y filter
+- es O(n) porque crea arreglos intermedios, que pueden contener hasta n elementos.
+
+totalCiudadUnaPasada: tiene 1 pasada por las n ventas.
+- no tiene arreglos nuevos
+- O(n) el ciclo revisa todas las ventas.
+
+totalCiudadCadena recorre el arreglo en etapas. En el peor caso si todas las ventas pasan el filtro este proces hasta 4n elementos, como Big O elimina las constantes O(4n) se simplifica en O(n).
+totalCiudadUnaPasada recorre las ventas de una vez por lo que tarda O(n) porque su trabajo crece proporcionalmente a la cantidad de ventas, la version de la cadena si hace mas trabajo pero al eliminar la constante queda en la misma categoria.
+
+Clasificacion de la complejidad espacial de todas las funciones del motor.
+
+Usan memoria adicional O(1), estas funciones usan variables individuales, como acumuladores o referencias y no guardan una coleccion que crezca con las ventas.
+- valorVenta, quitarEspacios, convertirAMinuscula, convertirAMayuscula.
+- totalVendido, unidadesVendidas y unidadVendida.
+- ventaMayor,ticketPromedio, ventasPorCiudad, totalVendidoM, unidadesVendidasM.
+- ventaValida, ventaInvalida, formatoPesos, totalCiudadUnaPasada, primeraVenta
+
+Usan memoria adicional O(n), estas funciones crean arreglos que pueden crecer segun los datos que tengan.
+- ventasPorCiudadM este usa filter guarda  las ventas que coinciden en un arreglo nuevo.
+- ventasDelDia este usa filter devuelve un arreglo con las ventas de esa fecha.
+- clientesRecurrentes guarda los clientes recurrentes en un nuevo arreglo.
+- totalCiudadCadena este crea los arreglos intermedios con map y filter.
+- unidadesPorProducto el objeto que maneja los totales puede crecer con la cantidad de productos diferentes.
+- totalPorCiudad el objeto de los totales puede crecer con la cantidad de ciudades distintas y tambien crea estructuras intermedias.
+- topProductosPorValor crea un objeto y listas de productos para acumular, ordenar y seleccionar resultados.
+
+Decision de totalCiudad
+Dejaria totalCiudadUnaPasada ya que es la mas facil de seguir y usa menos memoria porque no crea arreglos en medio asi que prefiero la version que usa espacio O(1).

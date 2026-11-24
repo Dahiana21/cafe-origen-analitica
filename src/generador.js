@@ -154,3 +154,12 @@ const totalesPorCiudad = totalPorCiudadInstrumentado(ventasPrueba, contadorCiuda
 
 console.log("Toral por ciudad: ", totalesPorCiudad);
 console.log("Operaciones: ", contadorCiudades.operaciones);
+
+const pruebas = generarVentas(10000);
+const resultadoCadena = analitica.totalCiudadCadena(pruebas, "Bogotá");
+const resultadoUnaPasada = analitica.totalCiudadUnaPasada(pruebas , "Bogotá");
+console.log ("\n");
+console.log("Diferencia entre dos funciones en totalPorCiudad usando dos funciones diferentes")
+console.log("Resultado con cadena: ", resultadoCadena);
+console.log("Resultado una pasada: ", resultadoUnaPasada);
+console.log("Son iguales?: ", resultadoCadena === resultadoUnaPasada);
