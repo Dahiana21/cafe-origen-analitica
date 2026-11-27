@@ -163,3 +163,5 @@ console.log("Diferencia entre dos funciones en totalPorCiudad usando dos funcion
 console.log("Resultado con cadena: ", resultadoCadena);
 console.log("Resultado una pasada: ", resultadoUnaPasada);
 console.log("Son iguales?: ", resultadoCadena === resultadoUnaPasada);
+
+
