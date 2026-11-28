@@ -164,4 +164,28 @@ console.log("Resultado con cadena: ", resultadoCadena);
 console.log("Resultado una pasada: ", resultadoUnaPasada);
 console.log("Son iguales?: ", resultadoCadena === resultadoUnaPasada);
 
+const ventasDia1 = require("./datos");
+const ventas5000 = generarVentas(5000);
+const prueba = [ventasDia1, ventas5000];
 
+for (let i=0; i < prueba.length; i++){
+    const original = analitica.clientesRecurrentes(prueba[i]).sort();
+    const conSet = analitica.clientesRecurrentesSet(prueba[i]).sort();
+    const conMap = analitica.clientesRecurrentesMap(prueba[i]).sort();
+
+    let iguales = true;
+
+    if(original.length !== conSet.length || original.length !== conMap.length){
+        iguales = false;
+    } else {
+        for (let j=0; j < original.length; j++){
+            if (original[j] !== conSet[j] || original[j] !== conMap[j]){
+                iguales = false;
+            }
+        }
+
+        
+    }
+
+    console.log("Prueba", i+1, "son iguales?", iguales);
+}

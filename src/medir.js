@@ -37,3 +37,25 @@ for (const n of variables2){
     analitica.clientesRecurrentes(ventasGeneradas);
     console.timeEnd(nombre);
 }
+
+const cantidades = [1000,10000,100000];
+for (let i=0; i < cantidades.length; i++){
+    const cantidad = cantidades[i];
+    const ventas = generador.generarVentas(cantidad);
+
+    console.log("Prueba con ", cantidad, "ventas");
+
+    if(cantidad <= 10000){
+        console.time("Original");
+        analitica.clientesRecurrentes(ventas);
+        console.timeEnd("Original");
+    }
+
+    console.time("Set");
+    analitica.clientesRecurrentesSet(ventas);
+    console.timeEnd("Set");
+
+    console.time("Map");
+    analitica.clientesRecurrentesMap(ventas);
+    console.timeEnd("Map");
+}

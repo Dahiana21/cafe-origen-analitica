@@ -207,3 +207,46 @@ Usan memoria adicional O(n), estas funciones crean arreglos que pueden crecer se
 
 Decision de totalCiudad
 Dejaria totalCiudadUnaPasada ya que es la mas facil de seguir y usa menos memoria porque no crea arreglos en medio asi que prefiero la version que usa espacio O(1).
+
+DIA 3
+
+Optimizacion de los clientes recurrentes
+
+Entrada: arreglo de ventas con identificadores de clientes
+Salida: arreglo de clientes que aparecen mas de una vez, sin repetirlos
+restircciones: manejar arreglos vacios y procesar 100.000 ventas en menos de un segundo con las versiones optimizadas.
+
+EJEMPLOS Y CASOS BORDE
+- ["C01", "C02", "C01"] = ["C01"]
+- ["C01", "C02", "C03"] = []
+- [] = []
+- ["C01", "C01", "C01"] = ["C01"]
+
+FUERZA BRUTA
+La funcion original utiliza dos ciclos anidados e includes() para identificar clientes repetidos
+
+- Tiempo O(n²).
+- Espacio O(n).
+- Problema: realiza demasiadas comparaciones al aumentar las ventas
+
+OPTIMIZACION
+Reemplazar los ciclos anidados por un solo recorrrido
+
+- Set: guardar clientes vistos y recurrentes, evitando busqueda repetidas
+- Map: contar cuantas veces aparece cada cliente.
+
+PRUEBAS DE RENDIMIENTO
+
+ventas     Original      Set            Map
+1000       3,487 ms      0,229 ms       0,381 ms
+10000      621,02 ms     2,410 ms       1,782 ms
+100000     47,803 s      10,544 ms      6,471 ms
+
+La version original O(n²) aumenta considerablemente su tiempo porque utiliza ciclos anidados. las versiones con Set y Map  presentan un crecimiento mucho menor gracias a las busquedas de costo constante promedio.
+
+INTERCAMBIO ENTRE ESPACIO Y MEMORIA
+La funcion original tiene una complejidad temporal  O(n²) porque utiliza ciclos anidados para comparar las ventas.
+
+Las nuevas versiones con Set y Map reducen el tiempo a  O(n), porque guardan los clientes encontrados y evitan realizar comparaciones repetitivas. Sin embargo, necesitan memoria adicional O(n) para almacenar los clientes vistos o contar sus compras.
+
+En las pruebas con 100.000 ventas, Set tardó 10,544 ms y Map 6,471 ms, mientras que la versión original había tardado 47,803 segundos.
