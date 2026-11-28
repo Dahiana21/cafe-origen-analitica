@@ -189,3 +189,10 @@ for (let i=0; i < prueba.length; i++){
 
     console.log("Prueba", i+1, "son iguales?", iguales);
 }
+
+const ventasRendimiento = generarVentas(10000)
+const resultado = analitica.productoEstrellaPorCiudad(ventasRendimiento);
+console.log("Producto estrella por ciudad: ", resultado)
+
+const ventas = require("./datos")
+console.log("Primer cliente unico: ", analitica.primerCliente(ventas));

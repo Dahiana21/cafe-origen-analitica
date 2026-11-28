@@ -351,6 +351,67 @@ function clientesRecurrentesMap (ventas){
     return recurrentes;
 }
 
+function productoEstrellaPorCiudad (ventas){
+    const ciudades = new Map();
+
+    for (const venta of ventas){
+        const ciudad = venta.ciudad.trim().toLowerCase();
+        const producto = venta.producto.trim().toLowerCase();
+
+        if (!ciudades.has(ciudad)){
+            ciudades.set(ciudad, new Map());
+        }
+
+        const productos = ciudades.get(ciudad);
+
+        if (productos.has(producto)){
+            productos.set(producto, productos.get(producto) + 1);
+        } else {
+            productos.set(producto, 1);
+        }
+    }
+
+    const estrellas = new Map();
+    
+    for (const [ciudad, productos] of ciudades){
+        let mayor = 0;
+        let estrella = "";
+        
+        for (const [producto, cantidad] of productos){
+            if (cantidad > mayor){
+                mayor = cantidad;
+                estrella = producto;
+            }
+        }
+
+        estrellas.set(ciudad, estrella);
+    }
+
+    return estrellas;
+}
+
+function primerCliente (ventas){
+    const clientes = new Map();
+
+    for (const venta of ventas){
+        const cliente = venta.cliente;
+
+        if (clientes.has(cliente)){
+            clientes.set(cliente, clientes.get(cliente) + 1);
+        } else {
+            clientes.set(cliente, 1 );
+        }
+    }
+
+    for (const venta of ventas){
+        if (clientes.get(venta.cliente) === 1){
+            return venta.cliente;
+        }
+    }
+
+    return null;
+}
+
 module.exports={
     valorVenta,
     totalVendido,
@@ -373,5 +434,7 @@ module.exports={
     totalCiudadUnaPasada,
     clientesRecurrentesSet,
     comprasPorCliente,
-    clientesRecurrentesMap
+    clientesRecurrentesMap,
+    productoEstrellaPorCiudad,
+    primerCliente
 };

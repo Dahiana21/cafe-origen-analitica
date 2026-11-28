@@ -250,3 +250,35 @@ La funcion original tiene una complejidad temporal  O(n²) porque utiliza ciclos
 Las nuevas versiones con Set y Map reducen el tiempo a  O(n), porque guardan los clientes encontrados y evitan realizar comparaciones repetitivas. Sin embargo, necesitan memoria adicional O(n) para almacenar los clientes vistos o contar sus compras.
 
 En las pruebas con 100.000 ventas, Set tardó 10,544 ms y Map 6,471 ms, mientras que la versión original había tardado 47,803 segundos.
+
+Complejidad de comboRegalo usando fuerza bruta
+- Temporal: O(n²), por los dos ciclos anidados
+- Espacial: O(1) porque no crear estructuras adicionales que crezcan con el catalogo.
+
+Traza de la version optimizada para 87.000
+
+Vuelta    Precio      Sobrante    Resultado
+ 1        26.000      61.000      Guarda 26.000
+
+ 2        42.000      45.000      Guarda 42.000
+
+ 3        45.000      42.000      Encuentra 42.000 y retorna 
+
+
+Clasifica la complejidad de las tres funciones
+
+Función: comboRegaloMap
+Complejidad temporal: O(n)
+Complejidad espacial: O(n)
+Justificacion: Recorre el catalogo una sola vez y utiliza Map para guardar los precios y buscar los sobrantes.
+
+Función: productoEstrellaPorCiudad
+Complejidad temporal: O(n)
+Complejidad espacial: O(n)
+Justificacion: Recorre las ventas para contar las apariciones de cada producto por ciudad y despues identifica el mas frecuente
+
+Función: primerClienteUnico
+Complejidad temporal: O(n)
+Complejidad espacial: O(n)
+Justificacion: Realiza dos recorridos de las ventas y utiliza un Map para almacenar la cantidad de compras por cliente
+
